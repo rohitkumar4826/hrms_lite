@@ -2,6 +2,9 @@
 
 A production-ready full-stack web application for managing employees and tracking daily attendance. Built with modern technologies and following best practices for UI/UX and code organization.
 
+## Deployed Link
+https://hrms-lite-1-z1f8.onrender.com/
+
 ## 🎯 Features
 
 ### Core Functionality
