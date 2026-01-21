@@ -77,7 +77,7 @@ https://hrms-lite-1-z1f8.onrender.com/
 
 #### 1. Clone Repository
 ```bash
-git clone https://github.com/yourusername/hrms-lite.git
+git clone https://github.com/rohitkumar4826/hrms_lite.git
 cd hrms-lite
 ```
 
