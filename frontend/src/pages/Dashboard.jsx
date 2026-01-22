@@ -3,7 +3,7 @@ import { Users, Calendar, CheckCircle, XCircle } from 'lucide-react';
 import { attendanceAPI } from '../services/api';
 import Loading from '../components/Loading';
 import ErrorMessage from '../components/ErrorMessage';
-
+import { Link } from 'react-router-dom';
 const Dashboard = () => {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -105,27 +105,28 @@ const Dashboard = () => {
         })}
       </div>
 
-      <div className="mt-8 card">
-        <h3 className="text-xl font-semibold text-gray-900 mb-4">Quick Actions</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <a
-            href="/employees"
-            className="p-4 border-2 border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-all cursor-pointer"
-          >
-            <Users className="w-6 h-6 text-primary-600 mb-2" />
-            <h4 className="font-semibold text-gray-900 mb-1">Manage Employees</h4>
-            <p className="text-sm text-gray-600">Add, view, or remove employees</p>
-          </a>
-          <a
-            href="/attendance"
-            className="p-4 border-2 border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-all cursor-pointer"
-          >
-            <Calendar className="w-6 h-6 text-primary-600 mb-2" />
-            <h4 className="font-semibold text-gray-900 mb-1">Track Attendance</h4>
-            <p className="text-sm text-gray-600">Mark and view attendance records</p>
-          </a>
+        <div className="mt-8 card">
+          <h3 className="text-xl font-semibold text-gray-900 mb-4">Quick Actions</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Link
+              to="/employees"
+              className="p-4 border-2 border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-all cursor-pointer"
+            >
+              <Users className="w-6 h-6 text-primary-600 mb-2" />
+              <h4 className="font-semibold text-gray-900 mb-1">Manage Employees</h4>
+              <p className="text-sm text-gray-600">Add, view, or remove employees</p>
+            </Link>
+
+            <Link
+              to="/attendance"
+              className="p-4 border-2 border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-all cursor-pointer"
+            >
+              <Calendar className="w-6 h-6 text-primary-600 mb-2" />
+              <h4 className="font-semibold text-gray-900 mb-1">Track Attendance</h4>
+              <p className="text-sm text-gray-600">Mark and view attendance records</p>
+            </Link>
+          </div>
         </div>
-      </div>
     </div>
   );
 };
