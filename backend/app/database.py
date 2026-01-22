@@ -1,23 +1,30 @@
 from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, declarative_base
 import os
 from dotenv import load_dotenv
-from urllib.parse import quote
 
 load_dotenv()
 
-# URL encode the password to handle special characters like @
-# password = os.getenv("DB_PASSWORD", "Sanjay@123")
-# encoded_password = quote(password, safe='')
 DATABASE_URL = os.getenv("DATABASE_URL")
 
-# Handle Railway/Render postgres:// to postgresql://
-if DATABASE_URL.startswith("postgres://"):
+# Convert postgres:// to postgresql:// (Render/Railway)
+if DATABASE_URL and DATABASE_URL.startswith("postgres://"):
     DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
-engine = create_engine(DATABASE_URL)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+engine = create_engine(
+    DATABASE_URL,
+    pool_pre_ping=True,        # ✅ checks if connection is alive
+    pool_recycle=300,          # ✅ prevents idle timeout
+    connect_args={
+        "sslmode": "require"   # ✅ REQUIRED for Render Postgres
+    }
+)
+
+SessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    bind=engine
+)
 
 Base = declarative_base()
 

@@ -22,7 +22,7 @@ const Dashboard = () => {
       if (err.code === 'ECONNABORTED') {
         errorMessage = 'Request timeout - Backend server may not be responding';
       } else if (err.code === 'ERR_NETWORK') {
-        errorMessage = 'Network error - Cannot connect to backend server at http://localhost:8000';
+        errorMessage = 'Network error - Cannot connect to backend server';
       } else if (err.response?.status === 404) {
         errorMessage = 'API endpoint not found (404)';
       } else if (err.response?.status === 500) {
